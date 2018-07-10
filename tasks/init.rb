@@ -5,7 +5,7 @@ require 'puppet'
 begin
   Puppet.initialize_settings
   @configfile = Puppet.settings['config']
-  x = ::Puppet::Resource.new('ini_setting', 'noop', parameters: { ensure: 'true', path: @configfile, section: 'agent', setting: 'noop' })
+  x = ::Puppet::Resource.new('ini_setting', 'noop', parameters: { ensure: 'present', path: @configfile, section: 'agent', setting: 'noop', value: 'true' })
   _result, _report = ::Puppet::Resource.indirection.save(x)
   Puppet.initialize_settings
   puts "Noop is now #{Puppet.settings['noop']}"
